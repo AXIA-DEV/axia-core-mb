@@ -29,7 +29,7 @@ pub enum DatabaseType {
 pub struct TempDatabase(tempfile::TempDir);
 
 struct ParityDbWrapper(axia_db::Db);
-axia_util_mem::malloc_size_of_is_0!(ParityDbWrapper);
+parity_util_mem::malloc_size_of_is_0!(ParityDbWrapper);
 
 impl KeyValueDB for ParityDbWrapper {
 	/// Get a value by key.
