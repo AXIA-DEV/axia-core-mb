@@ -38,7 +38,7 @@ mod cache;
 mod changes_tries_storage;
 mod children;
 #[cfg(feature = "with-parity-db")]
-mod axia_db;
+mod parity_db;
 mod stats;
 mod storage_cache;
 #[cfg(any(feature = "with-kvdb-rocksdb", test))]
