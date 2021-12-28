@@ -547,7 +547,7 @@ dependencies = [
  "ahash",
  "hash-db",
  "hashbrown",
- "axia-util-mem",
+ "parity-util-mem",
 ]
 
 [[package]]
@@ -657,21 +657,21 @@ dependencies = [
 ]
 
 [[package]]
-name = "axia-util-mem"
+name = "parity-util-mem"
 version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ef1476e40bf8f5c6776e9600983435821ca86eb9819d74a6207cca69d091406a"
 dependencies = [
  "cfg-if",
  "impl-trait-for-tuples",
- "axia-util-mem-derive",
+ "parity-util-mem-derive",
  "parking_lot 0.10.0",
  "primitive-types",
  "winapi",
 ]
 
 [[package]]
-name = "axia-util-mem-derive"
+name = "parity-util-mem-derive"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f557c32c6d268a07c921471619c0295f5efad3a0e76d4f97a05c091a51d110b2"
@@ -1157,7 +1157,7 @@ dependencies = [
  "log",
  "num-traits",
  "parity-scale-codec",
- "axia-util-mem",
+ "parity-util-mem",
  "parking_lot 0.10.0",
  "primitive-types",
  "rand 0.7.3",
@@ -1272,7 +1272,7 @@ dependencies = [
  "impl-trait-for-tuples",
  "log",
  "parity-scale-codec",
- "axia-util-mem",
+ "parity-util-mem",
  "paste",
  "rand 0.7.3",
  "serde",

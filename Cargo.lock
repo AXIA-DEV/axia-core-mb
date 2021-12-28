@@ -2043,7 +2043,7 @@ dependencies = [
  "log 0.4.14",
  "once_cell",
  "parity-scale-codec",
- "axia-util-mem",
+ "parity-util-mem",
  "paste 1.0.4",
  "pretty_assertions",
  "scale-info",
@@ -3207,7 +3207,7 @@ version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "45a3f58dc069ec0e205a27f5b45920722a46faed802a0541538241af6228f512"
 dependencies = [
- "axia-util-mem",
+ "parity-util-mem",
  "smallvec 1.7.0",
 ]
 
@@ -3218,7 +3218,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c3b6b85fc643f5acd0bffb2cc8a6d150209379267af0d41db72170021841f9f5"
 dependencies = [
  "kvdb",
- "axia-util-mem",
+ "parity-util-mem",
  "parking_lot 0.11.1",
 ]
 
@@ -3233,7 +3233,7 @@ dependencies = [
  "log 0.4.14",
  "num_cpus",
  "owning_ref",
- "axia-util-mem",
+ "parity-util-mem",
  "parking_lot 0.11.1",
  "regex",
  "rocksdb",
@@ -4100,7 +4100,7 @@ checksum = "de006e09d04fc301a5f7e817b75aa49801c4479a8af753764416b085337ddcc5"
 dependencies = [
  "hash-db",
  "hashbrown 0.11.2",
- "axia-util-mem",
+ "parity-util-mem",
 ]
 
 [[package]]
@@ -4431,7 +4431,7 @@ dependencies = [
  "node-runtime",
  "node-testing",
  "axia-db",
- "axia-util-mem",
+ "parity-util-mem",
  "rand 0.7.3",
  "sc-basic-authorship",
  "sc-client-api",
@@ -6203,7 +6203,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "axia-util-mem"
+name = "parity-util-mem"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7ad6f1acec69b95caf435bbd158d486e5a0a44fcf51531e84922c59ff09e8457"
@@ -6211,7 +6211,7 @@ dependencies = [
  "cfg-if 1.0.0",
  "hashbrown 0.11.2",
  "impl-trait-for-tuples",
- "axia-util-mem-derive",
+ "parity-util-mem-derive",
  "parking_lot 0.11.1",
  "primitive-types",
  "smallvec 1.7.0",
@@ -6219,7 +6219,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "axia-util-mem-derive"
+name = "parity-util-mem-derive"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f557c32c6d268a07c921471619c0295f5efad3a0e76d4f97a05c091a51d110b2"
@@ -8014,7 +8014,7 @@ dependencies = [
  "futures 0.3.16",
  "futures-timer 3.0.2",
  "log 0.4.14",
- "axia-util-mem",
+ "parity-util-mem",
  "sc-client-api",
  "sc-network",
  "sc-transaction-pool-api",
@@ -8317,7 +8317,7 @@ dependencies = [
  "jsonrpc-pubsub",
  "log 0.4.14",
  "parity-scale-codec",
- "axia-util-mem",
+ "parity-util-mem",
  "parking_lot 0.11.1",
  "pin-project 1.0.8",
  "rand 0.7.3",
@@ -8412,8 +8412,8 @@ version = "0.10.0-dev"
 dependencies = [
  "log 0.4.14",
  "parity-scale-codec",
- "axia-util-mem",
- "axia-util-mem-derive",
+ "parity-util-mem",
+ "parity-util-mem-derive",
  "parking_lot 0.11.1",
  "sc-client-api",
  "sp-core",
@@ -8509,7 +8509,7 @@ dependencies = [
  "linked-hash-map",
  "log 0.4.14",
  "parity-scale-codec",
- "axia-util-mem",
+ "parity-util-mem",
  "parking_lot 0.11.1",
  "retain_mut",
  "sc-block-builder",
@@ -9235,7 +9235,7 @@ dependencies = [
  "merlin",
  "num-traits",
  "parity-scale-codec",
- "axia-util-mem",
+ "parity-util-mem",
  "parking_lot 0.11.1",
  "primitive-types",
  "rand 0.7.3",
@@ -9457,7 +9457,7 @@ dependencies = [
  "impl-trait-for-tuples",
  "log 0.4.14",
  "parity-scale-codec",
- "axia-util-mem",
+ "parity-util-mem",
  "paste 1.0.4",
  "rand 0.7.3",
  "scale-info",
@@ -9650,7 +9650,7 @@ name = "sp-test-primitives"
 version = "2.0.0"
 dependencies = [
  "parity-scale-codec",
- "axia-util-mem",
+ "parity-util-mem",
  "serde",
  "sp-application-crypto",
  "sp-core",
@@ -10017,7 +10017,7 @@ dependencies = [
  "pallet-babe",
  "pallet-timestamp",
  "parity-scale-codec",
- "axia-util-mem",
+ "parity-util-mem",
  "sc-block-builder",
  "sc-executor",
  "sc-service",
