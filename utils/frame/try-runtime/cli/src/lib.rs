@@ -261,7 +261,7 @@
 //!     -s snap \
 //! ```
 
-use axia_scale_codec::Decode;
+use parity_scale_codec::Decode;
 use remote_externalities::{
 	Builder, Mode, OfflineConfig, OnlineConfig, SnapshotConfig, TestExternalities,
 };
