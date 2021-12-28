@@ -38,7 +38,7 @@ lazy_static = "1.4.0"
 parity-util-mem = { version = "0.10.0", default-features = false, features = [
     "primitive-types",
 ] }
-axia-db = { version = "0.3" }
+parity-db = { version = "0.3" }
 sc-transaction-pool = { version = "4.0.0-dev", path = "../../../client/transaction-pool" }
 sc-transaction-pool-api = { version = "4.0.0-dev", path = "../../../client/transaction-pool/api" }
 futures = { version = "0.3.4", features = ["thread-pool"] }

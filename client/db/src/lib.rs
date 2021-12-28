@@ -37,7 +37,7 @@ pub mod bench;
 mod cache;
 mod changes_tries_storage;
 mod children;
-#[cfg(feature = "with-axia-db")]
+#[cfg(feature = "with-parity-db")]
 mod axia_db;
 mod stats;
 mod storage_cache;
@@ -361,7 +361,7 @@ impl DatabaseSource {
 			// as per https://github.com/axiatech/substrate/pull/9500#discussion_r684312550
 			//
 			// IIUC this is needed for axia to create its own dbs, so until it can use axia db
-			// I would think rocksdb, but later axia-db.
+			// I would think rocksdb, but later parity-db.
 			DatabaseSource::Auto { axiadb_path, .. } => Some(&axiadb_path),
 			DatabaseSource::RocksDb { path, .. } | DatabaseSource::ParityDb { path } => Some(&path),
 			DatabaseSource::Custom(..) => None,
