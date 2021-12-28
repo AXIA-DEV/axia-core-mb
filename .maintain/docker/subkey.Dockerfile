@@ -5,7 +5,7 @@ ARG VCS_REF
 ARG BUILD_DATE
 
 LABEL io.axia.image.authors="devops-team@axiacoin.network" \
-	io.axia.image.vendor="Parity Technologies" \
+	io.axia.image.vendor="AXIA Technologies" \
 	io.axia.image.title="axia/subkey" \
 	io.axia.image.description="Subkey: key generating utility for Substrate." \
 	io.axia.image.source="https://github.com/axiatech/substrate/blob/${VCS_REF}/.maintain/docker/subkey.Dockerfile" \

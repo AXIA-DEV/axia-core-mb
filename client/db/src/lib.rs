@@ -1,6 +1,6 @@
 // This file is part of Substrate.
 
-// Copyright (C) 2017-2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2017-2021 AXIA Technologies (UK) Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later WITH Classpath-exception-2.0
 
 // This program is free software: you can redistribute it and/or modify
@@ -327,7 +327,7 @@ pub enum TransactionStorageMode {
 #[derive(Debug, Clone)]
 pub enum DatabaseSource {
 	/// Check given path, and see if there is an existing database there. If it's either `RocksDb`
-	/// or `ParityDb`, use it. If there is none, create a new instance of `ParityDb`.
+	/// or `AXIADb`, use it. If there is none, create a new instance of `AXIADb`.
 	Auto {
 		/// Path to the axiadb database.
 		axiadb_path: PathBuf,
@@ -344,8 +344,8 @@ pub enum DatabaseSource {
 		cache_size: usize,
 	},
 
-	/// Load a ParityDb database from a given path.
-	ParityDb {
+	/// Load a AXIADb database from a given path.
+	AXIADb {
 		/// Path to the database.
 		path: PathBuf,
 	},
@@ -363,7 +363,7 @@ impl DatabaseSource {
 			// IIUC this is needed for axia to create its own dbs, so until it can use axia db
 			// I would think rocksdb, but later parity-db.
 			DatabaseSource::Auto { axiadb_path, .. } => Some(&axiadb_path),
-			DatabaseSource::RocksDb { path, .. } | DatabaseSource::ParityDb { path } => Some(&path),
+			DatabaseSource::RocksDb { path, .. } | DatabaseSource::AXIADb { path } => Some(&path),
 			DatabaseSource::Custom(..) => None,
 		}
 	}
@@ -376,7 +376,7 @@ impl DatabaseSource {
 				true
 			},
 			DatabaseSource::RocksDb { ref mut path, .. } |
-			DatabaseSource::ParityDb { ref mut path } => {
+			DatabaseSource::AXIADb { ref mut path } => {
 				*path = p.into();
 				true
 			},
@@ -390,7 +390,7 @@ impl std::fmt::Display for DatabaseSource {
 		let name = match self {
 			DatabaseSource::Auto { .. } => "Auto",
 			DatabaseSource::RocksDb { .. } => "RocksDb",
-			DatabaseSource::ParityDb { .. } => "ParityDb",
+			DatabaseSource::AXIADb { .. } => "AXIADb",
 			DatabaseSource::Custom(_) => "Custom",
 		};
 		write!(f, "{}", name)

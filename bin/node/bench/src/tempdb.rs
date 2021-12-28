@@ -1,6 +1,6 @@
 // This file is part of Substrate.
 
-// Copyright (C) 2020-2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2020-2021 AXIA Technologies (UK) Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later WITH Classpath-exception-2.0
 
 // This program is free software: you can redistribute it and/or modify
@@ -23,15 +23,15 @@ use std::{io, path::PathBuf, sync::Arc};
 #[derive(Debug, Clone, Copy, derive_more::Display)]
 pub enum DatabaseType {
 	RocksDb,
-	ParityDb,
+	AXIADb,
 }
 
 pub struct TempDatabase(tempfile::TempDir);
 
-struct ParityDbWrapper(parity_db::Db);
-parity_util_mem::malloc_size_of_is_0!(ParityDbWrapper);
+struct AXIADbWrapper(parity_db::Db);
+parity_util_mem::malloc_size_of_is_0!(AXIADbWrapper);
 
-impl KeyValueDB for ParityDbWrapper {
+impl KeyValueDB for AXIADbWrapper {
 	/// Get a value by key.
 	fn get(&self, col: u32, key: &[u8]) -> io::Result<Option<Vec<u8>>> {
 		Ok(self.0.get(col as u8, &key[key.len() - 32..]).expect("db error"))
@@ -94,7 +94,7 @@ impl TempDatabase {
 				let db = Database::open(&db_cfg, &self.0.path()).expect("Database backend error");
 				Arc::new(db)
 			},
-			DatabaseType::ParityDb => Arc::new(ParityDbWrapper({
+			DatabaseType::AXIADb => Arc::new(AXIADbWrapper({
 				let mut options = parity_db::Options::with_columns(self.0.path(), 1);
 				let mut column_options = &mut options.columns[0];
 				column_options.ref_counted = true;

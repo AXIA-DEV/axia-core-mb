@@ -1,6 +1,6 @@
 // This file is part of Substrate.
 
-// Copyright (C) 2018-2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2018-2021 AXIA Technologies (UK) Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later WITH Classpath-exception-2.0
 
 // This program is free software: you can redistribute it and/or modify
@@ -195,8 +195,8 @@ impl Into<sc_service::config::RpcMethods> for RpcMethods {
 pub enum Database {
 	/// Facebooks RocksDB
 	RocksDb,
-	/// ParityDb. <https://github.com/axiatech/parity-db/>
-	ParityDb,
+	/// AXIADb. <https://github.com/axiatech/parity-db/>
+	AXIADb,
 	/// Detect whether there is an existing database. Use it, if there is, if not, create new
 	/// instance of axiadb
 	Auto,
@@ -209,7 +209,7 @@ impl std::str::FromStr for Database {
 		if s.eq_ignore_ascii_case("rocksdb") {
 			Ok(Self::RocksDb)
 		} else if s.eq_ignore_ascii_case("axiadb-experimental") {
-			Ok(Self::ParityDb)
+			Ok(Self::AXIADb)
 		} else if s.eq_ignore_ascii_case("auto") {
 			Ok(Self::Auto)
 		} else {

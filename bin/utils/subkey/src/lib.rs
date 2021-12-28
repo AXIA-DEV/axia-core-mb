@@ -1,6 +1,6 @@
 // This file is part of Substrate.
 
-// Copyright (C) 2018-2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2018-2021 AXIA Technologies (UK) Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later WITH Classpath-exception-2.0
 
 // This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ use structopt::StructOpt;
 #[derive(Debug, StructOpt)]
 #[structopt(
 	name = "subkey",
-	author = "Parity Team <admin@axiacoin.network>",
+	author = "AXIA Team <admin@axiacoin.network>",
 	about = "Utility for generating and restoring with Substrate keys"
 )]
 pub enum Subkey {

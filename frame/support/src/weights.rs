@@ -1,6 +1,6 @@
 // This file is part of Substrate.
 
-// Copyright (C) 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2019-2021 AXIA Technologies (UK) Ltd.
 // SPDX-License-Identifier: Apache-2.0
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -171,9 +171,9 @@ pub mod constants {
 			read: 25 * WEIGHT_PER_MICROS,   // ~25 µs @ 200,000 items
 			write: 100 * WEIGHT_PER_MICROS, // ~100 µs @ 200,000 items
 		};
-		/// ParityDB can be enabled with a feature flag, but is still experimental. These weights
+		/// AXIADB can be enabled with a feature flag, but is still experimental. These weights
 		/// are available for brave runtime engineers who may want to try this out as default.
-		pub const ParityDbWeight: RuntimeDbWeight = RuntimeDbWeight {
+		pub const AXIADbWeight: RuntimeDbWeight = RuntimeDbWeight {
 			read: 8 * WEIGHT_PER_MICROS,   // ~8 µs @ 200,000 items
 			write: 50 * WEIGHT_PER_MICROS, // ~50 µs @ 200,000 items
 		};

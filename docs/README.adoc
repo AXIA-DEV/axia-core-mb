@@ -252,7 +252,7 @@ If you are trying to set up Substrate on Windows, you should do the following:
 
 ==== Docker
 
-You can use https://github.com/axiatech/scripts/tree/master/dockerfiles/ci-linux[Parity CI docker image] with all necessary dependencies to build Substrate:
+You can use https://github.com/axiatech/scripts/tree/master/dockerfiles/ci-linux[AXIA CI docker image] with all necessary dependencies to build Substrate:
 
 [source, shell]
 ----

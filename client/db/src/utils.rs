@@ -1,6 +1,6 @@
 // This file is part of Substrate.
 
-// Copyright (C) 2017-2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2017-2021 AXIA Technologies (UK) Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later WITH Classpath-exception-2.0
 
 // This program is free software: you can redistribute it and/or modify
@@ -232,7 +232,7 @@ fn open_database_at<Block: BlockT>(
 	db_type: DatabaseType,
 ) -> sp_blockchain::Result<Arc<dyn Database<DbHash>>> {
 	let db: Arc<dyn Database<DbHash>> = match &source {
-		DatabaseSource::ParityDb { path } => open_parity_db::<Block>(&path, db_type, true)?,
+		DatabaseSource::AXIADb { path } => open_parity_db::<Block>(&path, db_type, true)?,
 		DatabaseSource::RocksDb { path, cache_size } =>
 			open_kvdb_rocksdb::<Block>(&path, db_type, true, *cache_size)?,
 		DatabaseSource::Custom(db) => db.clone(),
@@ -683,13 +683,13 @@ mod tests {
 		#[cfg(feature = "with-parity-db")]
 		check_dir_for_db_type(
 			DatabaseType::Light,
-			DatabaseSource::ParityDb { path: PathBuf::new() },
+			DatabaseSource::AXIADb { path: PathBuf::new() },
 			"metadata",
 		);
 		#[cfg(feature = "with-parity-db")]
 		check_dir_for_db_type(
 			DatabaseType::Full,
-			DatabaseSource::ParityDb { path: PathBuf::new() },
+			DatabaseSource::AXIADb { path: PathBuf::new() },
 			"metadata",
 		);
 
@@ -806,7 +806,7 @@ mod tests {
 
 		// it should reopen existing auto (pairtydb) database
 		{
-			settings.source = DatabaseSource::ParityDb { path: axiadb_path };
+			settings.source = DatabaseSource::AXIADb { path: axiadb_path };
 			let db_res = open_database::<Block>(&settings, DatabaseType::Full);
 			assert!(db_res.is_ok(), "Existing axia database should be reopened");
 		}
@@ -843,7 +843,7 @@ mod tests {
 
 		// it should fail to open existing auto (rocksdb) database
 		{
-			settings.source = DatabaseSource::ParityDb { path: axiadb_path };
+			settings.source = DatabaseSource::AXIADb { path: axiadb_path };
 			let db_res = open_database::<Block>(&settings, DatabaseType::Full);
 			assert!(db_res.is_ok(), "New axiadb database should be created");
 		}
@@ -865,7 +865,7 @@ mod tests {
 		let axiadb_path = db_path.join("axiadb");
 		let rocksdb_path = db_path.join("rocksdb_path");
 
-		let source = DatabaseSource::ParityDb { path: axiadb_path.clone() };
+		let source = DatabaseSource::AXIADb { path: axiadb_path.clone() };
 		let mut settings = db_settings(source);
 
 		// it should create new axiadb database

@@ -10,7 +10,7 @@ FROM docker.io/library/ubuntu:20.04
 LABEL description="Multistage Docker image for Substrate: a platform for web3" \
 	io.axia.image.type="builder" \
 	io.axia.image.authors="chevdor@gmail.com, devops-team@axiacoin.network" \
-	io.axia.image.vendor="Parity Technologies" \
+	io.axia.image.vendor="AXIA Technologies" \
 	io.axia.image.description="Substrate is a next-generation framework for blockchain innovation 🚀" \
 	io.axia.image.source="https://github.com/axiatech/axia/blob/${VCS_REF}/docker/substrate_builder.Dockerfile" \
 	io.axia.image.documentation="https://github.com/axiatech/axia/"

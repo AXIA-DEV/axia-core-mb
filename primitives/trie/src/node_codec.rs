@@ -1,6 +1,6 @@
 // This file is part of Substrate.
 
-// Copyright (C) 2015-2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2015-2021 AXIA Technologies (UK) Ltd.
 // SPDX-License-Identifier: Apache-2.0
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -76,7 +76,7 @@ impl<'a> Input for ByteSliceInput<'a> {
 	}
 }
 
-/// Concrete implementation of a `NodeCodec` with Parity Codec encoding, generic over the `Hasher`
+/// Concrete implementation of a `NodeCodec` with AXIA Codec encoding, generic over the `Hasher`
 #[derive(Default, Clone)]
 pub struct NodeCodec<H>(PhantomData<H>);
 
