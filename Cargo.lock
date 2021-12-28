@@ -6230,7 +6230,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "axia-wasm"
+name = "parity-wasm"
 version = "0.32.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "16ad52817c4d343339b3bc2e26861bd21478eda0b7509acf83505727000512ac"
@@ -6239,7 +6239,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "axia-wasm"
+name = "parity-wasm"
 version = "0.42.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "be5e13c266502aadf83426d87d81a0f5d1ef45b8027f5a471c360abfe4bfae92"
@@ -6798,7 +6798,7 @@ checksum = "880b3384fb00b8f6ecccd5d358b93bd2201900ae3daad213791d1864f6441f5c"
 dependencies = [
  "byteorder",
  "log 0.4.14",
- "axia-wasm 0.42.2",
+ "parity-wasm 0.42.2",
 ]
 
 [[package]]
@@ -7924,7 +7924,7 @@ dependencies = [
  "libc",
  "log 0.4.14",
  "parity-scale-codec",
- "axia-wasm 0.42.2",
+ "parity-wasm 0.42.2",
  "sc-allocator",
  "sc-executor-common",
  "sc-runtime-test",
@@ -9731,7 +9731,7 @@ version = "4.0.0-dev"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
- "axia-wasm 0.42.2",
+ "parity-wasm 0.42.2",
  "scale-info",
  "serde",
  "sp-runtime",
@@ -11132,7 +11132,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d0c32691b6c7e6c14e7f8fd55361a9088b507aa49620fcd06c09b3a1082186b9"
 dependencies = [
  "log 0.4.14",
- "axia-wasm 0.32.0",
+ "parity-wasm 0.32.0",
  "rustc-demangle",
 ]
 
@@ -11357,7 +11357,7 @@ dependencies = [
  "memory_units",
  "num-rational 0.2.4",
  "num-traits",
- "axia-wasm 0.42.2",
+ "parity-wasm 0.42.2",
  "wasmi-validation",
 ]
 
@@ -11367,7 +11367,7 @@ version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2eb8e860796d8be48efef530b60eebf84e74a88bce107374fffb0da97d504b8"
 dependencies = [
- "axia-wasm 0.42.2",
+ "parity-wasm 0.42.2",
 ]
 
 [[package]]

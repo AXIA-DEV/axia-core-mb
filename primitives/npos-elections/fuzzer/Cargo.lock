@@ -682,7 +682,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "axia-wasm"
+name = "parity-wasm"
 version = "0.41.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ddfc878dac00da22f8f61e7af3157988424567ab01d9920b962ef7dcbd7cd865"
@@ -1539,7 +1539,7 @@ dependencies = [
  "memory_units",
  "num-rational",
  "num-traits",
- "axia-wasm",
+ "parity-wasm",
  "wasmi-validation",
 ]
 
@@ -1549,7 +1549,7 @@ version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ea78c597064ba73596099281e2f4cfc019075122a65cdda3205af94f0b264d93"
 dependencies = [
- "axia-wasm",
+ "parity-wasm",
 ]
 
 [[package]]
