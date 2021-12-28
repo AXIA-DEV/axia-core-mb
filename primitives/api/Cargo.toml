@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@axiacoin.network>"]
 edition = "2018"
 license = "Apache-2.0"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 description = "Substrate runtime api primitives"
 readme = "README.md"
 
@@ -13,7 +13,7 @@ readme = "README.md"
 targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
-codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false }
+codec = { package = "axia-scale-codec", version = "2.0.0", default-features = false }
 sp-api-proc-macro = { version = "4.0.0-dev", path = "proc-macro" }
 sp-core = { version = "4.0.0-dev", default-features = false, path = "../core" }
 sp-std = { version = "4.0.0-dev", default-features = false, path = "../std" }

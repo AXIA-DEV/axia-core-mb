@@ -195,10 +195,10 @@ impl Into<sc_service::config::RpcMethods> for RpcMethods {
 pub enum Database {
 	/// Facebooks RocksDB
 	RocksDb,
-	/// ParityDb. <https://github.com/paritytech/parity-db/>
+	/// ParityDb. <https://github.com/axiatech/axia-db/>
 	ParityDb,
 	/// Detect whether there is an existing database. Use it, if there is, if not, create new
-	/// instance of paritydb
+	/// instance of axiadb
 	Auto,
 }
 
@@ -208,7 +208,7 @@ impl std::str::FromStr for Database {
 	fn from_str(s: &str) -> Result<Self, String> {
 		if s.eq_ignore_ascii_case("rocksdb") {
 			Ok(Self::RocksDb)
-		} else if s.eq_ignore_ascii_case("paritydb-experimental") {
+		} else if s.eq_ignore_ascii_case("axiadb-experimental") {
 			Ok(Self::ParityDb)
 		} else if s.eq_ignore_ascii_case("auto") {
 			Ok(Self::Auto)
@@ -221,7 +221,7 @@ impl std::str::FromStr for Database {
 impl Database {
 	/// Returns all the variants of this enum to be shown in the cli.
 	pub fn variants() -> &'static [&'static str] {
-		&["rocksdb", "paritydb-experimental", "auto"]
+		&["rocksdb", "axiadb-experimental", "auto"]
 	}
 }
 

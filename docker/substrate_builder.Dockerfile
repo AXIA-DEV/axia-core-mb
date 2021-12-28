@@ -1,5 +1,5 @@
 # This is the build stage for Substrate. Here we create the binary.
-FROM docker.io/paritytech/ci-linux:production as builder
+FROM docker.io/axiatech/ci-linux:production as builder
 
 WORKDIR /substrate
 COPY . /substrate
@@ -8,12 +8,12 @@ RUN cargo build --locked --release
 # This is the 2nd stage: a very small image where we copy the Substrate binary."
 FROM docker.io/library/ubuntu:20.04
 LABEL description="Multistage Docker image for Substrate: a platform for web3" \
-	io.parity.image.type="builder" \
-	io.parity.image.authors="chevdor@gmail.com, devops-team@axiacoin.network" \
-	io.parity.image.vendor="Parity Technologies" \
-	io.parity.image.description="Substrate is a next-generation framework for blockchain innovation 🚀" \
-	io.parity.image.source="https://github.com/paritytech/axia/blob/${VCS_REF}/docker/substrate_builder.Dockerfile" \
-	io.parity.image.documentation="https://github.com/paritytech/axia/"
+	io.axia.image.type="builder" \
+	io.axia.image.authors="chevdor@gmail.com, devops-team@axiacoin.network" \
+	io.axia.image.vendor="Parity Technologies" \
+	io.axia.image.description="Substrate is a next-generation framework for blockchain innovation 🚀" \
+	io.axia.image.source="https://github.com/axiatech/axia/blob/${VCS_REF}/docker/substrate_builder.Dockerfile" \
+	io.axia.image.documentation="https://github.com/axiatech/axia/"
 
 COPY --from=builder /substrate/target/release/substrate /usr/local/bin
 COPY --from=builder /substrate/target/release/subkey /usr/local/bin

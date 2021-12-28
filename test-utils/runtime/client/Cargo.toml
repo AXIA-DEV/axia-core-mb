@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@axiacoin.network>"]
 edition = "2018"
 license = "Apache-2.0"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 publish = false
 
 [package.metadata.docs.rs]
@@ -22,6 +22,6 @@ substrate-test-runtime = { version = "2.0.0", path = "../../runtime" }
 sp-runtime = { version = "4.0.0-dev", path = "../../../primitives/runtime" }
 sp-api = { version = "4.0.0-dev", path = "../../../primitives/api" }
 sp-blockchain = { version = "4.0.0-dev", path = "../../../primitives/blockchain" }
-codec = { package = "parity-scale-codec", version = "2.0.0" }
+codec = { package = "axia-scale-codec", version = "2.0.0" }
 sc-client-api = { version = "4.0.0-dev", path = "../../../client/api" }
 futures = "0.3.9"

@@ -40,7 +40,7 @@ mod worker;
 
 pub mod notification;
 
-pub const BEEFY_PROTOCOL_NAME: &str = "/paritytech/beefy/1";
+pub const BEEFY_PROTOCOL_NAME: &str = "/axiatech/beefy/1";
 
 /// Returns the configuration value to put in
 /// [`sc_network::config::NetworkConfiguration::extra_sets`].

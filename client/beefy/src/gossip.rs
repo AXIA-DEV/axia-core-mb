@@ -119,7 +119,7 @@ where
 	// This is a preliminary fix and the detailed description why we are
 	// doing this can be found as part of the issue below
 	//
-	// https://github.com/paritytech/grandpa-bridge-gadget/issues/237
+	// https://github.com/axiatech/grandpa-bridge-gadget/issues/237
 	//
 	fn is_live(known_votes: &KnownVotes<B>, round: &NumberFor<B>) -> bool {
 		let unseen_round = if let Some(max_known_round) = known_votes.keys().last() {

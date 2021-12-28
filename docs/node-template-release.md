@@ -1,7 +1,7 @@
 # Substrate Node Template Release Process
 
 1. This release process has to be run in a github checkout Substrate directory with your work
-committed into `https://github.com/paritytech/substrate/`, because the build script will check
+committed into `https://github.com/axiatech/substrate/`, because the build script will check
 the existence of your current git commit ID in the remote repository.
 
 	Assume you are in root directory of Substrate. Run:
@@ -35,7 +35,7 @@ commit in Substrate remote repository, such as:
 	```toml
 	[dev-dependencies.sp-core]
 	default-features = false
-	git = 'https://github.com/paritytech/substrate.git'
+	git = 'https://github.com/axiatech/substrate.git'
 	rev = 'c1fe59d060600a10eebb4ace277af1fee20bad17'
 	version = '3.0.0'
 	```

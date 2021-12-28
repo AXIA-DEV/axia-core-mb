@@ -551,7 +551,7 @@ where
 	TBl::Header: Unpin,
 	TBackend: 'static + sc_client_api::backend::Backend<TBl> + Send,
 	TExPool: MaintainedTransactionPool<Block = TBl, Hash = <TBl as BlockT>::Hash>
-		+ parity_util_mem::MallocSizeOf
+		+ axia_util_mem::MallocSizeOf
 		+ 'static,
 	TRpc: sc_rpc::RpcExtension<sc_rpc::Metadata>,
 {
@@ -1016,7 +1016,7 @@ where
 	// This entire hack should eventually be removed in favour of passing the list of protocols
 	// through the configuration.
 	//
-	// See also https://github.com/paritytech/substrate/issues/6827
+	// See also https://github.com/axiatech/substrate/issues/6827
 	let (network_start_tx, network_start_rx) = oneshot::channel();
 
 	// The network worker is responsible for gathering all network messages and processing

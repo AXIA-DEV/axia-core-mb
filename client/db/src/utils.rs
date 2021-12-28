@@ -36,7 +36,7 @@ use sp_trie::DBValue;
 /// Otherwise RocksDb will fail to open database && check its type.
 #[cfg(any(
 	feature = "with-kvdb-rocksdb",
-	feature = "with-parity-db",
+	feature = "with-axia-db",
 	feature = "test-helpers",
 	test
 ))]
@@ -232,16 +232,16 @@ fn open_database_at<Block: BlockT>(
 	db_type: DatabaseType,
 ) -> sp_blockchain::Result<Arc<dyn Database<DbHash>>> {
 	let db: Arc<dyn Database<DbHash>> = match &source {
-		DatabaseSource::ParityDb { path } => open_parity_db::<Block>(&path, db_type, true)?,
+		DatabaseSource::ParityDb { path } => open_axia_db::<Block>(&path, db_type, true)?,
 		DatabaseSource::RocksDb { path, cache_size } =>
 			open_kvdb_rocksdb::<Block>(&path, db_type, true, *cache_size)?,
 		DatabaseSource::Custom(db) => db.clone(),
-		DatabaseSource::Auto { paritydb_path, rocksdb_path, cache_size } => {
-			// check if rocksdb exists first, if not, open paritydb
+		DatabaseSource::Auto { axiadb_path, rocksdb_path, cache_size } => {
+			// check if rocksdb exists first, if not, open axiadb
 			match open_kvdb_rocksdb::<Block>(&rocksdb_path, db_type, false, *cache_size) {
 				Ok(db) => db,
 				Err(OpenDbError::NotEnabled(_)) | Err(OpenDbError::DoesNotExist) =>
-					open_parity_db::<Block>(&paritydb_path, db_type, true)?,
+					open_axia_db::<Block>(&axiadb_path, db_type, true)?,
 				Err(_) => return Err(backend_err("cannot open rocksdb. corrupted database")),
 			}
 		},
@@ -253,7 +253,7 @@ fn open_database_at<Block: BlockT>(
 
 #[derive(Debug)]
 enum OpenDbError {
-	// constructed only when rocksdb and paritydb are disabled
+	// constructed only when rocksdb and axiadb are disabled
 	#[allow(dead_code)]
 	NotEnabled(&'static str),
 	DoesNotExist,
@@ -280,9 +280,9 @@ impl From<OpenDbError> for sp_blockchain::Error {
 	}
 }
 
-#[cfg(feature = "with-parity-db")]
-impl From<parity_db::Error> for OpenDbError {
-	fn from(err: parity_db::Error) -> Self {
+#[cfg(feature = "with-axia-db")]
+impl From<axia_db::Error> for OpenDbError {
+	fn from(err: axia_db::Error) -> Self {
 		if err.to_string().contains("use open_or_create") {
 			OpenDbError::DoesNotExist
 		} else {
@@ -301,19 +301,19 @@ impl From<io::Error> for OpenDbError {
 	}
 }
 
-#[cfg(feature = "with-parity-db")]
-fn open_parity_db<Block: BlockT>(path: &Path, db_type: DatabaseType, create: bool) -> OpenDbResult {
-	let db = crate::parity_db::open(path, db_type, create)?;
+#[cfg(feature = "with-axia-db")]
+fn open_axia_db<Block: BlockT>(path: &Path, db_type: DatabaseType, create: bool) -> OpenDbResult {
+	let db = crate::axia_db::open(path, db_type, create)?;
 	Ok(db)
 }
 
-#[cfg(not(feature = "with-parity-db"))]
-fn open_parity_db<Block: BlockT>(
+#[cfg(not(feature = "with-axia-db"))]
+fn open_axia_db<Block: BlockT>(
 	_path: &Path,
 	_db_type: DatabaseType,
 	_create: bool,
 ) -> OpenDbResult {
-	Err(OpenDbError::NotEnabled("with-parity-db"))
+	Err(OpenDbError::NotEnabled("with-axia-db"))
 }
 
 #[cfg(any(feature = "with-kvdb-rocksdb", test))]
@@ -421,7 +421,7 @@ fn maybe_migrate_to_type_subdir<Block: BlockT>(
 		basedir.pop();
 
 		// Do we have to migrate to a database-type-based subdirectory layout:
-		// See if there's a file identifying a rocksdb or paritydb folder in the parent dir and
+		// See if there's a file identifying a rocksdb or axiadb folder in the parent dir and
 		// the target path ends in a role specific directory
 		if (basedir.join("db_version").exists() || basedir.join("metadata").exists()) &&
 			(p.ends_with(DatabaseType::Full.as_str()) ||
@@ -680,13 +680,13 @@ mod tests {
 			"db_version",
 		);
 
-		#[cfg(feature = "with-parity-db")]
+		#[cfg(feature = "with-axia-db")]
 		check_dir_for_db_type(
 			DatabaseType::Light,
 			DatabaseSource::ParityDb { path: PathBuf::new() },
 			"metadata",
 		);
-		#[cfg(feature = "with-parity-db")]
+		#[cfg(feature = "with-axia-db")]
 		check_dir_for_db_type(
 			DatabaseType::Full,
 			DatabaseSource::ParityDb { path: PathBuf::new() },
@@ -770,22 +770,22 @@ mod tests {
 		}
 	}
 
-	#[cfg(feature = "with-parity-db")]
+	#[cfg(feature = "with-axia-db")]
 	#[cfg(any(feature = "with-kvdb-rocksdb", test))]
 	#[test]
 	fn test_open_database_auto_new() {
 		let db_dir = tempfile::TempDir::new().unwrap();
 		let db_path = db_dir.path().to_owned();
-		let paritydb_path = db_path.join("paritydb");
+		let axiadb_path = db_path.join("axiadb");
 		let rocksdb_path = db_path.join("rocksdb_path");
 		let source = DatabaseSource::Auto {
-			paritydb_path: paritydb_path.clone(),
+			axiadb_path: axiadb_path.clone(),
 			rocksdb_path: rocksdb_path.clone(),
 			cache_size: 128,
 		};
 		let mut settings = db_settings(source);
 
-		// it should create new auto (paritydb) database
+		// it should create new auto (axiadb) database
 		{
 			let db_res = open_database::<Block>(&settings, DatabaseType::Full);
 			assert!(db_res.is_ok(), "New database should be created.");
@@ -794,7 +794,7 @@ mod tests {
 		// it should reopen existing auto (pairtydb) database
 		{
 			let db_res = open_database::<Block>(&settings, DatabaseType::Full);
-			assert!(db_res.is_ok(), "Existing parity database should be reopened");
+			assert!(db_res.is_ok(), "Existing axia database should be reopened");
 		}
 
 		// it should fail to open existing auto (pairtydb) database
@@ -806,19 +806,19 @@ mod tests {
 
 		// it should reopen existing auto (pairtydb) database
 		{
-			settings.source = DatabaseSource::ParityDb { path: paritydb_path };
+			settings.source = DatabaseSource::ParityDb { path: axiadb_path };
 			let db_res = open_database::<Block>(&settings, DatabaseType::Full);
-			assert!(db_res.is_ok(), "Existing parity database should be reopened");
+			assert!(db_res.is_ok(), "Existing axia database should be reopened");
 		}
 	}
 
-	#[cfg(feature = "with-parity-db")]
+	#[cfg(feature = "with-axia-db")]
 	#[cfg(any(feature = "with-kvdb-rocksdb", test))]
 	#[test]
 	fn test_open_database_rocksdb_new() {
 		let db_dir = tempfile::TempDir::new().unwrap();
 		let db_path = db_dir.path().to_owned();
-		let paritydb_path = db_path.join("paritydb");
+		let axiadb_path = db_path.join("axiadb");
 		let rocksdb_path = db_path.join("rocksdb_path");
 
 		let source = DatabaseSource::RocksDb { path: rocksdb_path.clone(), cache_size: 128 };
@@ -833,7 +833,7 @@ mod tests {
 		// it should reopen existing auto (rocksdb) database
 		{
 			settings.source = DatabaseSource::Auto {
-				paritydb_path: paritydb_path.clone(),
+				axiadb_path: axiadb_path.clone(),
 				rocksdb_path: rocksdb_path.clone(),
 				cache_size: 128,
 			};
@@ -843,9 +843,9 @@ mod tests {
 
 		// it should fail to open existing auto (rocksdb) database
 		{
-			settings.source = DatabaseSource::ParityDb { path: paritydb_path };
+			settings.source = DatabaseSource::ParityDb { path: axiadb_path };
 			let db_res = open_database::<Block>(&settings, DatabaseType::Full);
-			assert!(db_res.is_ok(), "New paritydb database should be created");
+			assert!(db_res.is_ok(), "New axiadb database should be created");
 		}
 
 		// it should reopen existing auto (pairtydb) database
@@ -856,19 +856,19 @@ mod tests {
 		}
 	}
 
-	#[cfg(feature = "with-parity-db")]
+	#[cfg(feature = "with-axia-db")]
 	#[cfg(any(feature = "with-kvdb-rocksdb", test))]
 	#[test]
-	fn test_open_database_paritydb_new() {
+	fn test_open_database_axiadb_new() {
 		let db_dir = tempfile::TempDir::new().unwrap();
 		let db_path = db_dir.path().to_owned();
-		let paritydb_path = db_path.join("paritydb");
+		let axiadb_path = db_path.join("axiadb");
 		let rocksdb_path = db_path.join("rocksdb_path");
 
-		let source = DatabaseSource::ParityDb { path: paritydb_path.clone() };
+		let source = DatabaseSource::ParityDb { path: axiadb_path.clone() };
 		let mut settings = db_settings(source);
 
-		// it should create new paritydb database
+		// it should create new axiadb database
 		{
 			let db_res = open_database::<Block>(&settings, DatabaseType::Full);
 			assert!(db_res.is_ok(), "New database should be created.");
@@ -877,7 +877,7 @@ mod tests {
 		// it should reopen existing pairtydb database
 		{
 			let db_res = open_database::<Block>(&settings, DatabaseType::Full);
-			assert!(db_res.is_ok(), "Existing parity database should be reopened");
+			assert!(db_res.is_ok(), "Existing axia database should be reopened");
 		}
 
 		// it should fail to open existing pairtydb database
@@ -890,9 +890,9 @@ mod tests {
 
 		// it should reopen existing auto (pairtydb) database
 		{
-			settings.source = DatabaseSource::Auto { paritydb_path, rocksdb_path, cache_size: 128 };
+			settings.source = DatabaseSource::Auto { axiadb_path, rocksdb_path, cache_size: 128 };
 			let db_res = open_database::<Block>(&settings, DatabaseType::Full);
-			assert!(db_res.is_ok(), "Existing parity database should be reopened");
+			assert!(db_res.is_ok(), "Existing axia database should be reopened");
 		}
 	}
 }

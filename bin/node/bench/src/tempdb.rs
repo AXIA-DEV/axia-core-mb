@@ -28,8 +28,8 @@ pub enum DatabaseType {
 
 pub struct TempDatabase(tempfile::TempDir);
 
-struct ParityDbWrapper(parity_db::Db);
-parity_util_mem::malloc_size_of_is_0!(ParityDbWrapper);
+struct ParityDbWrapper(axia_db::Db);
+axia_util_mem::malloc_size_of_is_0!(ParityDbWrapper);
 
 impl KeyValueDB for ParityDbWrapper {
 	/// Get a value by key.
@@ -95,12 +95,12 @@ impl TempDatabase {
 				Arc::new(db)
 			},
 			DatabaseType::ParityDb => Arc::new(ParityDbWrapper({
-				let mut options = parity_db::Options::with_columns(self.0.path(), 1);
+				let mut options = axia_db::Options::with_columns(self.0.path(), 1);
 				let mut column_options = &mut options.columns[0];
 				column_options.ref_counted = true;
 				column_options.preimage = true;
 				column_options.uniform = true;
-				parity_db::Db::open_or_create(&options).expect("db open error")
+				axia_db::Db::open_or_create(&options).expect("db open error")
 			})),
 		}
 	}

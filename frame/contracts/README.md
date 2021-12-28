@@ -53,7 +53,7 @@ Those are documented in the [reference documentation](https://docs.rs/pallet-con
 
 This module executes WebAssembly smart contracts. These can potentially be written in any language
 that compiles to web assembly. However, using a language that specifically targets this module
-will make things a lot easier. One such language is [`ink`](https://github.com/paritytech/ink)
+will make things a lot easier. One such language is [`ink`](https://github.com/axiatech/ink)
 which is an [`eDSL`](https://wiki.haskell.org/Embedded_domain_specific_language) that enables
 writing WebAssembly based smart contracts in the Rust programming language.
 

@@ -52,7 +52,7 @@ Other examples include the allychain-heads extrinsic in AXIA and the "note-misse
 
 Substrate chains all have a runtime. The runtime is a WebAssembly "blob" that includes a number of entry-points. Some entry-points are required as part of the underlying Substrate specification. Others are merely convention and required for the default implementation of the Substrate client to be able to author blocks.
 
-If you want to develop a chain with Substrate, you will need to implement the `Core` trait. This `Core` trait generates an API with the minimum necessary functionality to interact with your runtime. A special macro is provided called `impl_runtime_apis!` that help you implement runtime API traits. All runtime API trait implementations need to be done in one call of the `impl_runtime_apis!` macro. All parameters and return values need to implement https://crates.io/crates/parity-codec[`parity-codec`] to be encodable and decodable.
+If you want to develop a chain with Substrate, you will need to implement the `Core` trait. This `Core` trait generates an API with the minimum necessary functionality to interact with your runtime. A special macro is provided called `impl_runtime_apis!` that help you implement runtime API traits. All runtime API trait implementations need to be done in one call of the `impl_runtime_apis!` macro. All parameters and return values need to implement https://crates.io/crates/axia-codec[`axia-codec`] to be encodable and decodable.
 
 Here's a snippet of the AXIA API implementation as of PoC-3:
 
@@ -252,14 +252,14 @@ If you are trying to set up Substrate on Windows, you should do the following:
 
 ==== Docker
 
-You can use https://github.com/paritytech/scripts/tree/master/dockerfiles/ci-linux[Parity CI docker image] with all necessary dependencies to build Substrate:
+You can use https://github.com/axiatech/scripts/tree/master/dockerfiles/ci-linux[Parity CI docker image] with all necessary dependencies to build Substrate:
 
 [source, shell]
 ----
 #run it in the folder with the Substrate source code
 docker run --rm -it -w /shellhere/substrate \
                     -v $(pwd):/shellhere/substrate \
-                    paritytech/ci-linux:production <cargo commands>
+                    axiatech/ci-linux:production <cargo commands>
 ----
 
 You can find necessary cargo commands in <<shared-steps,shared steps>>
@@ -270,7 +270,7 @@ Then, grab the Substrate source code:
 
 [source, shell]
 ----
-git clone https://github.com/paritytech/substrate.git
+git clone https://github.com/axiatech/substrate.git
 cd substrate
 ----
 
@@ -333,7 +333,7 @@ Latest known working version: `a2a0eb5398d6223e531455b4c155ef053a4a3a2b`
 
 [source, shell]
 ----
-git clone https://github.com/paritytech/substrate.git
+git clone https://github.com/axiatech/substrate.git
 cd substrate
 git checkout -b flaming-fir a2a0eb5398d6223e531455b4c155ef053a4a3a2b
 ----
@@ -367,7 +367,7 @@ In order to join the Emberic Elm testnet you should build from the `v1.0` branch
 
 [source, shell]
 ----
-git clone https://github.com/paritytech/substrate.git
+git clone https://github.com/axiatech/substrate.git
 cd substrate
 git checkout -b v1.0 origin/v1.0
 ----
@@ -396,7 +396,7 @@ curl -H 'Content-Type: application/json' --data '{ "jsonrpc":"2.0", "method":"au
 
 If the Session keys need to match a fixed seed, they can be set individually key by key. The RPC call
 expects the key seed and the key type. The key types supported by default in Substrate are listed
-https://github.com/paritytech/substrate/blob/master/core/primitives/src/crypto.rs#L767[here], but the
+https://github.com/axiatech/substrate/blob/master/core/primitives/src/crypto.rs#L767[here], but the
 user can declare any key type.
 
 ```
@@ -519,4 +519,4 @@ include::CODE_OF_CONDUCT.md[]
 
 == License
 
-https://github.com/paritytech/substrate/blob/master/LICENSE[LICENSE]
+https://github.com/axiatech/substrate/blob/master/LICENSE[LICENSE]

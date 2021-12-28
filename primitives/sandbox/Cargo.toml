@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@axiacoin.network>"]
 edition = "2018"
 license = "Apache-2.0"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 description = "This crate provides means to instantiate and execute wasm modules."
 readme = "README.md"
 
@@ -24,7 +24,7 @@ sp-core = { version = "4.0.0-dev", default-features = false, path = "../core" }
 sp-std = { version = "4.0.0-dev", default-features = false, path = "../std" }
 sp-io = { version = "4.0.0-dev", default-features = false, path = "../io" }
 sp-wasm-interface = { version = "4.0.0-dev", default-features = false, path = "../wasm-interface" }
-codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false }
+codec = { package = "axia-scale-codec", version = "2.0.0", default-features = false }
 log = { version = "0.4", default-features = false }
 
 [dev-dependencies]

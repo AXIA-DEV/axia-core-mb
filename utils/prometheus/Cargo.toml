@@ -6,7 +6,7 @@ license = "Apache-2.0"
 authors = ["Parity Technologies <admin@axiacoin.network>"]
 edition = "2018"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 readme = "README.md"
 
 [package.metadata.docs.rs]

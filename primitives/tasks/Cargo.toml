@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@axiacoin.network>"]
 edition = "2018"
 license = "Apache-2.0"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 description = "Runtime asynchronous, pure computational tasks"
 documentation = "https://docs.rs/sp-tasks"
 readme = "README.md"
@@ -22,7 +22,7 @@ sp-runtime-interface = { version = "4.0.0-dev", default-features = false, path =
 sp-std = { version = "4.0.0-dev", default-features = false, path = "../std" }
 
 [dev-dependencies]
-codec = { package = "parity-scale-codec", default-features = false, version = "2.0.0" }
+codec = { package = "axia-scale-codec", default-features = false, version = "2.0.0" }
 
 [features]
 default = ["std"]

@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@axiacoin.network>"]
 edition = "2018"
 license = "Apache-2.0"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 description = "Shareable Substrate types."
 documentation = "https://docs.rs/sp-core"
 
@@ -14,7 +14,7 @@ targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
 sp-std = { version = "4.0.0-dev", default-features = false, path = "../std" }
-codec = { package = "parity-scale-codec", version = "2.2.0", default-features = false, features = [
+codec = { package = "axia-scale-codec", version = "2.2.0", default-features = false, features = [
 	"derive",
 	"max-encoded-len",
 ] }
@@ -43,7 +43,7 @@ parking_lot = { version = "0.11.1", optional = true }
 sp-debug-derive = { version = "3.0.0", default-features = false, path = "../debug-derive" }
 sp-externalities = { version = "0.10.0-dev", optional = true, path = "../externalities" }
 sp-storage = { version = "4.0.0-dev", default-features = false, path = "../storage" }
-parity-util-mem = { version = "0.10.0", default-features = false, features = [
+axia-util-mem = { version = "0.10.0", default-features = false, features = [
 	"primitive-types",
 ] }
 futures = { version = "0.3.1", optional = true }

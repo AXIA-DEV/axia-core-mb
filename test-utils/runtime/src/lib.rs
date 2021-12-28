@@ -99,7 +99,7 @@ pub fn wasm_binary_logging_disabled_unwrap() -> &'static [u8] {
 #[sp_version::runtime_version]
 pub const VERSION: RuntimeVersion = RuntimeVersion {
 	spec_name: create_runtime_str!("test"),
-	impl_name: create_runtime_str!("parity-test"),
+	impl_name: create_runtime_str!("axia-test"),
 	authoring_version: 1,
 	spec_version: 2,
 	impl_version: 2,
@@ -167,7 +167,7 @@ pub enum Extrinsic {
 	Store(Vec<u8>),
 }
 
-parity_util_mem::malloc_size_of_is_0!(Extrinsic); // non-opaque extrinsic does not need this
+axia_util_mem::malloc_size_of_is_0!(Extrinsic); // non-opaque extrinsic does not need this
 
 #[cfg(feature = "std")]
 impl serde::Serialize for Extrinsic {

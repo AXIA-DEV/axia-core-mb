@@ -223,7 +223,7 @@
 //! should show something among the lines of:
 //!
 //! ```ignore
-//! Request for native execution succeeded (native: axia-9900 (parity-axia-0.tx7.au0), chain: axia-9900 (parity-axia-0.tx7.au0))
+//! Request for native execution succeeded (native: axia-9900 (axia-axia-0.tx7.au0), chain: axia-9900 (axia-axia-0.tx7.au0))
 //! ```
 //!
 //! If you don't have matching spec versions, then are doomed to execute wasm. In this case, you can
@@ -261,7 +261,7 @@
 //!     -s snap \
 //! ```
 
-use parity_scale_codec::Decode;
+use axia_scale_codec::Decode;
 use remote_externalities::{
 	Builder, Mode, OfflineConfig, OnlineConfig, SnapshotConfig, TestExternalities,
 };

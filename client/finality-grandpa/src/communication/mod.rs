@@ -44,7 +44,7 @@ use finality_grandpa::{
 	voter_set::VoterSet,
 	Message::{Precommit, Prevote, PrimaryPropose},
 };
-use parity_scale_codec::{Decode, Encode};
+use axia_scale_codec::{Decode, Encode};
 use sc_network::{NetworkService, ReputationChange};
 use sc_network_gossip::{GossipEngine, Network as GossipNetwork};
 use sc_telemetry::{telemetry, TelemetryHandle, CONSENSUS_DEBUG, CONSENSUS_INFO};
@@ -69,7 +69,7 @@ pub(crate) mod tests;
 
 /// Name of the notifications protocol used by Grandpa. Must be registered towards the networking
 /// in order for Grandpa to properly function.
-pub const GRANDPA_PROTOCOL_NAME: &'static str = "/paritytech/grandpa/1";
+pub const GRANDPA_PROTOCOL_NAME: &'static str = "/axiatech/grandpa/1";
 
 // cost scalars for reporting peers.
 mod cost {

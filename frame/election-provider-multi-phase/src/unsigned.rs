@@ -38,12 +38,12 @@ use sp_runtime::{
 use sp_std::{boxed::Box, cmp::Ordering, convert::TryFrom, vec::Vec};
 
 /// Storage key used to store the last block number at which offchain worker ran.
-pub(crate) const OFFCHAIN_LAST_BLOCK: &[u8] = b"parity/multi-phase-unsigned-election";
+pub(crate) const OFFCHAIN_LAST_BLOCK: &[u8] = b"axia/multi-phase-unsigned-election";
 /// Storage key used to store the offchain worker running status.
-pub(crate) const OFFCHAIN_LOCK: &[u8] = b"parity/multi-phase-unsigned-election/lock";
+pub(crate) const OFFCHAIN_LOCK: &[u8] = b"axia/multi-phase-unsigned-election/lock";
 
 /// Storage key used to cache the solution `call`.
-pub(crate) const OFFCHAIN_CACHED_CALL: &[u8] = b"parity/multi-phase-unsigned-election/call";
+pub(crate) const OFFCHAIN_CACHED_CALL: &[u8] = b"axia/multi-phase-unsigned-election/call";
 
 /// A voter's fundamental data: their ID, their stake, and the list of candidates for whom they
 /// voted.

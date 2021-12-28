@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@axiacoin.network>"]
 edition = "2018"
 license = "Apache-2.0"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 description = "FRAME sessions pallet benchmarking"
 readme = "README.md"
 
@@ -26,7 +26,7 @@ pallet-session = { version = "4.0.0-dev", default-features = false, path = "../.
 pallet-staking = { version = "4.0.0-dev", default-features = false, features = ["runtime-benchmarks"], path = "../../staking" }
 
 [dev-dependencies]
-codec = { package = "parity-scale-codec", version = "2.0.0", features = ["derive"] }
+codec = { package = "axia-scale-codec", version = "2.0.0", features = ["derive"] }
 scale-info = "1.0"
 sp-core = { version = "4.0.0-dev", path = "../../../primitives/core" }
 sp-io = { version = "4.0.0-dev", path = "../../../primitives/io" }

@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@axiacoin.network>"]
 edition = "2018"
 license = "Apache-2.0"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 description = "CLI for benchmarking FRAME"
 readme = "README.md"
 
@@ -24,7 +24,7 @@ sp-externalities = { version = "0.10.0-dev", path = "../../../primitives/externa
 sp-keystore = { version = "0.10.0-dev", path = "../../../primitives/keystore" }
 sp-runtime = { version = "4.0.0-dev", path = "../../../primitives/runtime" }
 sp-state-machine = { version = "0.10.0-dev", path = "../../../primitives/state-machine" }
-codec = { version = "2.0.0", package = "parity-scale-codec" }
+codec = { version = "2.0.0", package = "axia-scale-codec" }
 structopt = "0.3.8"
 chrono = "0.4"
 serde = "1.0.126"
@@ -35,4 +35,4 @@ log = "0.4.8"
 
 [features]
 default = ["db"]
-db = ["sc-client-db/with-kvdb-rocksdb", "sc-client-db/with-parity-db"]
+db = ["sc-client-db/with-kvdb-rocksdb", "sc-client-db/with-axia-db"]

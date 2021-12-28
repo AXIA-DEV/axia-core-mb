@@ -208,8 +208,8 @@ pub trait StateApi<Hash> {
 	/// [Source.][3]
 	///
 	/// [1]: https://crates.io/crates/diener
-	/// [2]: https://github.com/paritytech/substrate-archive/tree/master/wasm-tracing
-	/// [3]: https://github.com/paritytech/substrate-archive/wiki
+	/// [2]: https://github.com/axiatech/substrate-archive/tree/master/wasm-tracing
+	/// [3]: https://github.com/axiatech/substrate-archive/wiki
 	///
 	/// ## RPC Usage
 	///

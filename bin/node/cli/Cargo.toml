@@ -8,7 +8,7 @@ edition = "2018"
 license = "GPL-3.0-or-later WITH Classpath-exception-2.0"
 default-run = "substrate"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 
 [package.metadata.wasm-pack.profile.release]
 # `wasm-opt` has some problems on linux, see
@@ -19,10 +19,10 @@ wasm-opt = false
 targets = ["x86_64-unknown-linux-gnu"]
 
 [badges]
-travis-ci = { repository = "paritytech/substrate" }
+travis-ci = { repository = "axiatech/substrate" }
 maintenance = { status = "actively-developed" }
-is-it-maintained-issue-resolution = { repository = "paritytech/substrate" }
-is-it-maintained-open-issues = { repository = "paritytech/substrate" }
+is-it-maintained-issue-resolution = { repository = "axiatech/substrate" }
+is-it-maintained-open-issues = { repository = "axiatech/substrate" }
 
 [[bin]]
 name = "substrate"
@@ -34,7 +34,7 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 # third-party dependencies
-codec = { package = "parity-scale-codec", version = "2.0.0" }
+codec = { package = "axia-scale-codec", version = "2.0.0" }
 serde = { version = "1.0.126", features = ["derive"] }
 futures = "0.3.16"
 hex-literal = "0.3.3"

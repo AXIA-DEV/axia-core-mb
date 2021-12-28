@@ -4,14 +4,14 @@ FROM docker.io/library/ubuntu:20.04
 ARG VCS_REF
 ARG BUILD_DATE
 
-LABEL io.parity.image.authors="devops-team@axiacoin.network" \
-	io.parity.image.vendor="Parity Technologies" \
-	io.parity.image.title="parity/substrate" \
-	io.parity.image.description="Substrate: The platform for blockchain innovators." \
-	io.parity.image.source="https://github.com/paritytech/substrate/blob/${VCS_REF}/.maintain/docker/Dockerfile" \
-	io.parity.image.revision="${VCS_REF}" \
-	io.parity.image.created="${BUILD_DATE}" \
-	io.parity.image.documentation="https://wiki.axiacoin.network/Parity-Substrate"
+LABEL io.axia.image.authors="devops-team@axiacoin.network" \
+	io.axia.image.vendor="Parity Technologies" \
+	io.axia.image.title="axia/substrate" \
+	io.axia.image.description="Substrate: The platform for blockchain innovators." \
+	io.axia.image.source="https://github.com/axiatech/substrate/blob/${VCS_REF}/.maintain/docker/Dockerfile" \
+	io.axia.image.revision="${VCS_REF}" \
+	io.axia.image.created="${BUILD_DATE}" \
+	io.axia.image.documentation="https://wiki.axiacoin.network/Parity-Substrate"
 
 # show backtraces
 ENV RUST_BACKTRACE 1

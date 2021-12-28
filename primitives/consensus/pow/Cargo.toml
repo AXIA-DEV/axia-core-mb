@@ -6,7 +6,7 @@ description = "Primitives for Aura consensus"
 edition = "2018"
 license = "Apache-2.0"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 readme = "README.md"
 
 [package.metadata.docs.rs]
@@ -17,7 +17,7 @@ sp-api = { version = "4.0.0-dev", default-features = false, path = "../../api" }
 sp-std = { version = "4.0.0-dev", default-features = false, path = "../../std" }
 sp-runtime = { version = "4.0.0-dev", default-features = false, path = "../../runtime" }
 sp-core = { version = "4.0.0-dev", default-features = false, path = "../../core" }
-codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false, features = ["derive"] }
+codec = { package = "axia-scale-codec", version = "2.0.0", default-features = false, features = ["derive"] }
 
 [features]
 default = ["std"]

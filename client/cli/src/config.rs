@@ -226,11 +226,11 @@ pub trait CliConfiguration<DCV: DefaultConfigurationValues = ()>: Sized {
 			Role::Full | Role::Authority => "full",
 		};
 		let rocksdb_path = base_path.join("db").join(role_dir);
-		let paritydb_path = base_path.join("paritydb").join(role_dir);
+		let axiadb_path = base_path.join("axiadb").join(role_dir);
 		Ok(match database {
 			Database::RocksDb => DatabaseSource::RocksDb { path: rocksdb_path, cache_size },
-			Database::ParityDb => DatabaseSource::ParityDb { path: paritydb_path },
-			Database::Auto => DatabaseSource::Auto { paritydb_path, rocksdb_path, cache_size },
+			Database::ParityDb => DatabaseSource::ParityDb { path: axiadb_path },
+			Database::Auto => DatabaseSource::Auto { axiadb_path, rocksdb_path, cache_size },
 		})
 	}
 

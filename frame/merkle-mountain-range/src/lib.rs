@@ -41,7 +41,7 @@
 //! ## What for?
 //!
 //! Primary use case for this pallet is to generate MMR root hashes, that can latter on be used by
-//! BEEFY protocol (see <https://github.com/paritytech/grandpa-bridge-gadget>).
+//! BEEFY protocol (see <https://github.com/axiatech/grandpa-bridge-gadget>).
 //! MMR root hashes along with BEEFY will make it possible to build Super Light Clients (SLC) of
 //! Substrate-based chains. The SLC will be able to follow finality and can be shown proofs of more
 //! details that happened on the source chain.

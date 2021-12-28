@@ -37,8 +37,8 @@ pub mod bench;
 mod cache;
 mod changes_tries_storage;
 mod children;
-#[cfg(feature = "with-parity-db")]
-mod parity_db;
+#[cfg(feature = "with-axia-db")]
+mod axia_db;
 mod stats;
 mod storage_cache;
 #[cfg(any(feature = "with-kvdb-rocksdb", test))]
@@ -329,8 +329,8 @@ pub enum DatabaseSource {
 	/// Check given path, and see if there is an existing database there. If it's either `RocksDb`
 	/// or `ParityDb`, use it. If there is none, create a new instance of `ParityDb`.
 	Auto {
-		/// Path to the paritydb database.
-		paritydb_path: PathBuf,
+		/// Path to the axiadb database.
+		axiadb_path: PathBuf,
 		/// Path to the rocksdb database.
 		rocksdb_path: PathBuf,
 		/// Cache size in MiB. Used only by `RocksDb` variant of `DatabaseSource`.
@@ -358,11 +358,11 @@ impl DatabaseSource {
 	/// Return path for databases that are stored on disk.
 	pub fn path(&self) -> Option<&Path> {
 		match self {
-			// as per https://github.com/paritytech/substrate/pull/9500#discussion_r684312550
+			// as per https://github.com/axiatech/substrate/pull/9500#discussion_r684312550
 			//
-			// IIUC this is needed for axia to create its own dbs, so until it can use parity db
-			// I would think rocksdb, but later parity-db.
-			DatabaseSource::Auto { paritydb_path, .. } => Some(&paritydb_path),
+			// IIUC this is needed for axia to create its own dbs, so until it can use axia db
+			// I would think rocksdb, but later axia-db.
+			DatabaseSource::Auto { axiadb_path, .. } => Some(&axiadb_path),
 			DatabaseSource::RocksDb { path, .. } | DatabaseSource::ParityDb { path } => Some(&path),
 			DatabaseSource::Custom(..) => None,
 		}
@@ -371,8 +371,8 @@ impl DatabaseSource {
 	/// Set path for databases that are stored on disk.
 	pub fn set_path(&mut self, p: &Path) -> bool {
 		match self {
-			DatabaseSource::Auto { ref mut paritydb_path, .. } => {
-				*paritydb_path = p.into();
+			DatabaseSource::Auto { ref mut axiadb_path, .. } => {
+				*axiadb_path = p.into();
 				true
 			},
 			DatabaseSource::RocksDb { ref mut path, .. } |

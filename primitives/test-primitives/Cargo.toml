@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@axiacoin.network>"]
 edition = "2018"
 license = "Apache-2.0"
 homepage = "https://substrate.io"
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/axiatech/substrate/"
 publish = false
 
 [package.metadata.docs.rs]
@@ -13,11 +13,11 @@ targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
 sp-application-crypto = { version = "4.0.0-dev", default-features = false, path = "../application-crypto" }
-codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false, features = ["derive"] }
+codec = { package = "axia-scale-codec", version = "2.0.0", default-features = false, features = ["derive"] }
 sp-core = { version = "4.0.0-dev", default-features = false, path = "../core" }
 serde = { version = "1.0.126", optional = true, features = ["derive"] }
 sp-runtime = { version = "4.0.0-dev", default-features = false, path = "../runtime" }
-parity-util-mem = { version = "0.10.0", default-features = false, features = ["primitive-types"] }
+axia-util-mem = { version = "0.10.0", default-features = false, features = ["primitive-types"] }
 
 [features]
 default = [

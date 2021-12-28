@@ -10,7 +10,7 @@
 # what to test.   
 #
 # All args have default values, specify args to override
-# e.g: ./${SCRIPT_NAME} test-name parity/substrate:latest logs quick
+# e.g: ./${SCRIPT_NAME} test-name axia/substrate:latest logs quick
 
 set -eou pipefail
 SCRIPT_NAME="$0"
@@ -26,7 +26,7 @@ function random_string {
 #
 
 NAMESPACE=${1:-gurke-"$(random_string)"-runtest}
-IMAGE=${2:-"parity/substrate:latest"}
+IMAGE=${2:-"axia/substrate:latest"}
 LOG_PATH=${3:-"${SCRIPT_PATH}/logs"}
 FEATURES=${4:-"ALL"}
 

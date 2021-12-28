@@ -136,7 +136,7 @@ pub mod ed25519 {
 	pub type AuthorityId = app_ed25519::Public;
 }
 
-const DB_PREFIX: &[u8] = b"parity/im-online-heartbeat/";
+const DB_PREFIX: &[u8] = b"axia/im-online-heartbeat/";
 /// How many blocks do we wait for heartbeat transaction to be included
 /// before sending another one.
 const INCLUDE_THRESHOLD: u32 = 3;

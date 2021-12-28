@@ -9,7 +9,7 @@
 #
 # my-example-job:
 #   stage:                           test # One of the stages listed below this job (required)
-#   image:                           paritytech/tools:latest # Any docker image (required)
+#   image:                           axiatech/tools:latest # Any docker image (required)
 #   allow_failure:                   true # Allow the pipeline to continue if this job fails (default: false)
 #   needs:
 #     - job:                         test-linux # Any jobs that are required to run before this job (optional)
@@ -38,13 +38,13 @@ variables:                         &default-vars
   CARGO_INCREMENTAL:               0
   DOCKER_OS:                       "debian:stretch"
   ARCH:                            "x86_64"
-  CI_IMAGE:                        "paritytech/ci-linux:production"
+  CI_IMAGE:                        "axiatech/ci-linux:production"
   # FIXME set to release
   CARGO_UNLEASH_INSTALL_PARAMS:    "--version 1.0.0-alpha.12"
   CARGO_UNLEASH_PKG_DEF:           "--skip node node-* pallet-template pallet-example pallet-example-* subkey chain-spec-builder"
-  VAULT_SERVER_URL:                "https://vault.parity-mgmt-vault.axiacoin.network"
+  VAULT_SERVER_URL:                "https://vault.axia-mgmt-vault.axiacoin.network"
   VAULT_AUTH_PATH:                 "gitlab-axiacoin.network-jwt"
-  VAULT_AUTH_ROLE:                 "cicd_gitlab_parity_${CI_PROJECT_NAME}"
+  VAULT_AUTH_ROLE:                 "cicd_gitlab_axia_${CI_PROJECT_NAME}"
   SIMNET_FEATURES_PATH:            "simnet_tests/tests"
   PIPELINE_SCRIPTS_TAG:            "v0.1"
 
@@ -76,7 +76,7 @@ default:
       - api_failure
   interruptible:                   true
   tags:
-    - kubernetes-parity-build
+    - kubernetes-axia-build
 
 .rust-info-script:                 &rust-info-script
   - rustup show
@@ -172,8 +172,8 @@ default:
 .cargo-check-benches-script:       &cargo-check-benches-script
   - mkdir -p artifacts/benches/$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
   - SKIP_WASM_BUILD=1 time cargo +nightly check --benches --all
-  - 'cargo run --release -p node-bench -- ::node::import::native::sr25519::transfer_keep_alive::paritydb::small --json
-    | tee artifacts/benches/$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA/::node::import::native::sr25519::transfer_keep_alive::paritydb::small.json'
+  - 'cargo run --release -p node-bench -- ::node::import::native::sr25519::transfer_keep_alive::axiadb::small --json
+    | tee artifacts/benches/$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA/::node::import::native::sr25519::transfer_keep_alive::axiadb::small.json'
   - 'cargo run --release -p node-bench -- ::trie::read::small --json
     | tee artifacts/benches/$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA/::trie::read::small.json'
   - sccache -s
@@ -182,13 +182,13 @@ default:
 .vault-secrets:                    &vault-secrets
   secrets:
     DOCKER_HUB_USER:
-      vault:                       cicd/gitlab/parity/DOCKER_HUB_USER@kv
+      vault:                       cicd/gitlab/axia/DOCKER_HUB_USER@kv
       file:                        false
     DOCKER_HUB_PASS:
-      vault:                       cicd/gitlab/parity/DOCKER_HUB_PASS@kv
+      vault:                       cicd/gitlab/axia/DOCKER_HUB_PASS@kv
       file:                        false
     GITHUB_PR_TOKEN:
-      vault:                       cicd/gitlab/parity/GITHUB_PR_TOKEN@kv
+      vault:                       cicd/gitlab/axia/GITHUB_PR_TOKEN@kv
       file:                        false
     AWS_ACCESS_KEY_ID:
       vault:                       cicd/gitlab/$CI_PROJECT_PATH/AWS_ACCESS_KEY_ID@kv
@@ -239,7 +239,7 @@ default:
 #### stage:                       .pre
 
 skip-if-draft:
-  image:                           paritytech/tools:latest
+  image:                           axiatech/tools:latest
   <<:                              *kubernetes-env
   <<:                              *vault-secrets
   stage:                           .pre
@@ -255,7 +255,7 @@ skip-if-draft:
 
 check-runtime:
   stage:                           check
-  image:                           paritytech/tools:latest
+  image:                           axiatech/tools:latest
   <<:                              *kubernetes-env
   <<:                              *vault-secrets
   rules:
@@ -263,14 +263,14 @@ check-runtime:
   variables:
     <<:                            *default-vars
     GITLAB_API:                    "https://gitlab.axiacoin.network/api/v4"
-    GITHUB_API_PROJECT:            "parity%2Finfrastructure%2Fgithub-api"
+    GITHUB_API_PROJECT:            "axia%2Finfrastructure%2Fgithub-api"
   script:
     - ./.maintain/gitlab/check_runtime.sh
   allow_failure:                   true
 
 check-signed-tag:
   stage:                           check
-  image:                           paritytech/tools:latest
+  image:                           axiatech/tools:latest
   <<:                              *kubernetes-env
   <<:                              *vault-secrets
   rules:
@@ -281,7 +281,7 @@ check-signed-tag:
 
 test-dependency-rules:
   stage:                           check
-  image:                           paritytech/tools:latest
+  image:                           axiatech/tools:latest
   <<:                              *kubernetes-env
   rules:
     - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
@@ -290,7 +290,7 @@ test-dependency-rules:
 
 test-prometheus-alerting-rules:
   stage:                           check
-  image:                           paritytech/tools:latest
+  image:                           axiatech/tools:latest
   <<:                              *kubernetes-env
   rules:
     - if: $CI_PIPELINE_SOURCE == "pipeline"
@@ -353,7 +353,7 @@ cargo-check-benches:
 node-bench-regression-guard:
   # it's not belong to `build` semantically, but dag jobs can't depend on each other
   # within the single stage - https://gitlab.com/gitlab-org/gitlab/-/issues/30632
-  # more: https://github.com/paritytech/substrate/pull/8519#discussion_r608012402
+  # more: https://github.com/axiatech/substrate/pull/8519#discussion_r608012402
   stage:                           build
   <<:                              *docker-env
   <<:                              *test-refs-no-trigger-prs-only
@@ -367,7 +367,7 @@ node-bench-regression-guard:
       ref:                         master
       artifacts:                   true
   variables:
-    CI_IMAGE:                      "paritytech/node-bench-regression-guard:latest"
+    CI_IMAGE:                      "axiatech/node-bench-regression-guard:latest"
   before_script: [""]
   script:
     - 'node-bench-regression-guard --reference artifacts/benches/master-*
@@ -548,9 +548,9 @@ cargo-check-macos:
     - git clone
         --depth=1
         "--branch=$PIPELINE_SCRIPTS_TAG"
-        https://github.com/paritytech/pipeline-scripts
+        https://github.com/axiatech/pipeline-scripts
     - ./pipeline-scripts/check_dependent_project.sh
-        paritytech
+        axiatech
         substrate
         --substrate
         "$DEPENDENT_REPO"
@@ -668,7 +668,7 @@ build-rustdoc:
     <<:                            *default-vars
     GIT_STRATEGY:                  none
     DOCKERFILE:                    $PRODUCT.Dockerfile
-    IMAGE_NAME:                    docker.io/parity/$PRODUCT
+    IMAGE_NAME:                    docker.io/axia/$PRODUCT
   before_script:
     - cd ./artifacts/$PRODUCT/
     - VERSION="$(cat ./VERSION)"
@@ -726,7 +726,7 @@ publish-docker-substrate-simnet:
     GIT_STRATEGY:                  none
     DOCKERFILE:                    $PRODUCT.Dockerfile
     PRODUCT:                       substrate
-    IMAGE_NAME:                    docker.io/paritypr/$PRODUCT
+    IMAGE_NAME:                    docker.io/axiapr/$PRODUCT
   artifacts:
     reports:
       # this artifact is used in simnet-tests-quick job
@@ -752,7 +752,7 @@ publish-s3-release:
       artifacts:                   true
     - job:                         build-linux-subkey
       artifacts:                   true
-  image:                           paritytech/awscli:latest
+  image:                           axiatech/awscli:latest
   variables:
     GIT_STRATEGY:                  none
     BUCKET:                        "releases.axiacoin.network"
@@ -802,7 +802,7 @@ publish-rustdoc:
     - rm -rf .git/config
     - git config user.email "devops-team@axiacoin.network"
     - git config user.name "${GITHUB_USER}"
-    - git config remote.origin.url "https://${GITHUB_TOKEN}@github.com/paritytech/${CI_PROJECT_NAME}.git"
+    - git config remote.origin.url "https://${GITHUB_TOKEN}@github.com/axiatech/${CI_PROJECT_NAME}.git"
     - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
     - git fetch origin gh-pages
     # Install `ejs` and generate index.html based on RUSTDOCS_DEPLOY_REFS
@@ -846,7 +846,7 @@ publish-rustdoc:
 publish-draft-release:
   stage:                           publish
   <<:                              *vault-secrets
-  image:                           paritytech/tools:latest
+  image:                           axiatech/tools:latest
   rules:
     - if: $CI_COMMIT_REF_NAME =~ /^ci-release-.*$/
     - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
@@ -860,12 +860,12 @@ unleash-to-crates-io:
   <<:                              *vault-secrets
   rules:
     - if: $CI_COMMIT_REF_NAME =~ /^ci-release-.*$/
-    # FIXME: wait until https://github.com/paritytech/cargo-unleash/issues/50 is fixed, also
+    # FIXME: wait until https://github.com/axiatech/cargo-unleash/issues/50 is fixed, also
     # remove allow_failure: true on the check job
     # - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
   script:
     - cargo install cargo-unleash ${CARGO_UNLEASH_INSTALL_PARAMS}
-    - cargo unleash em-dragons --no-check --owner github:paritytech:core-devs ${CARGO_UNLEASH_PKG_DEF}
+    - cargo unleash em-dragons --no-check --owner github:axiatech:core-devs ${CARGO_UNLEASH_PKG_DEF}
   allow_failure:                   true
 
 #### stage:                        deploy
@@ -877,7 +877,7 @@ deploy-prometheus-alerting-rules:
       artifacts:                   false
   allow_failure:                   true
   trigger:
-    project:  parity/infrastructure/cloud-infra
+    project:  axia/infrastructure/cloud-infra
   variables:
     SUBSTRATE_CI_COMMIT_NAME:       "${CI_COMMIT_REF_NAME}"
     SUBSTRATE_CI_COMMIT_REF:        "${CI_COMMIT_SHORT_SHA}"
@@ -897,7 +897,7 @@ deploy-prometheus-alerting-rules:
 # network and check if all completed successfully
 simnet-tests:
   stage:                           deploy
-  image:                           docker.io/paritytech/simnet:${SIMNET_REF}
+  image:                           docker.io/axiatech/simnet:${SIMNET_REF}
   <<:                              *kubernetes-env
   <<:                              *vault-secrets
   rules:
@@ -913,11 +913,11 @@ simnet-tests:
   # ${SIMNET_REF} is a gitlab variable
   before_script:
     - echo "Simnet Tests Config
-      docker.io/paritytech/simnet:${SIMNET_REF}
+      docker.io/axiatech/simnet:${SIMNET_REF}
       ${SUBSTRATE_IMAGE_NAME} ${SUBSTRATE_IMAGE_TAG}"
   script:
     - /home/nonroot/simnet/gurke/scripts/run-test-environment-manager.sh
-        --github-remote-dir="https://github.com/paritytech/substrate/tree/master/simnet_tests"
+        --github-remote-dir="https://github.com/axiatech/substrate/tree/master/simnet_tests"
         --config="simnet_tests/configs/default_local_testnet.toml"
         --image="${SUBSTRATE_IMAGE_NAME}:${SUBSTRATE_IMAGE_TAG}"
   retry: 2
@@ -927,7 +927,7 @@ simnet-tests:
 #run quick simnet-tests for each PR
 simnet-tests-quick:
   stage:                           deploy
-  image:                           docker.io/paritytech/simnet:${SIMNET_REF}
+  image:                           docker.io/axiatech/simnet:${SIMNET_REF}
   <<:                              *kubernetes-env
   <<:                              *vault-secrets
   <<:                              *test-refs-no-trigger-prs-only
@@ -937,13 +937,13 @@ simnet-tests-quick:
     - job:                         publish-docker-substrate-simnet
   before_script:
     - echo "Simnet Tests Config
-      docker.io/paritytech/simnet:${SIMNET_REF}
+      docker.io/axiatech/simnet:${SIMNET_REF}
       ${SUBSTRATE_IMAGE_NAME} ${SUBSTRATE_IMAGE_TAG}"
   script:
     - echo "Image=${SUBSTRATE_IMAGE_NAME}:${SUBSTRATE_IMAGE_TAG}"
     - echo "Features=${SIMNET_FEATURES}"
     - /home/nonroot/simnet/gurke/scripts/run-test-environment-manager.sh
-        --github-remote-dir="https://github.com/paritytech/substrate/tree/master/simnet_tests"
+        --github-remote-dir="https://github.com/axiatech/substrate/tree/master/simnet_tests"
         --config="simnet_tests/configs/default_local_testnet.toml"
         --image="${SUBSTRATE_IMAGE_NAME}:${SUBSTRATE_IMAGE_TAG}"
         --features="${SIMNET_FEATURES}"

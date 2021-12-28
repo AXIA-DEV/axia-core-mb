@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog].
 
 ## 2.0.1-> 3.0.0 - Apollo 14
 
-Most notably, this is the first release of the new FRAME (2.0) with its new macro-syntax and some changes in types, and pallet versioning. This release also incorporates the faster and improve version 2.0 of the parity-scale-codec and upgraded dependencies all-around. While the `FinalityTracker` pallet has been dropped, this release marks the first public appearance of a few new pallets, too;Bounties, Lottery, Tips (extracted from the `Treasury`-pallet, see #7536) and Merkle-Mountain-Ranges (MMR).
+Most notably, this is the first release of the new FRAME (2.0) with its new macro-syntax and some changes in types, and pallet versioning. This release also incorporates the faster and improve version 2.0 of the axia-scale-codec and upgraded dependencies all-around. While the `FinalityTracker` pallet has been dropped, this release marks the first public appearance of a few new pallets, too;Bounties, Lottery, Tips (extracted from the `Treasury`-pallet, see #7536) and Merkle-Mountain-Ranges (MMR).
 
 On the client side, the most notable changes are around the keystore, making it async and switching to a different signing model allowing for remote-signing to be implemented; and various changes to improve networking and light-client support, like adding the Grandpa warp sync request-response protocol (#7711).
 
@@ -21,7 +21,7 @@ Not too much has changed on the top and API level for developing Substrate betwe
 3. remove everything, copy over the 3.0 node-template
 4. try re-applying your diff, manually, a hunk at a time.
 
-If that doesn't work for you, we are working on an in-depth-guide for all major changes that took place and how you need to adapt your code for it. [You can find the upgrade guide under `docs/` in the repo](https://github.com/paritytech/substrate/blob/master/docs/Upgrading-2.0-to-3.0.md), if you have further questions or problem, please [feel free to ask in the github discussion board](https://github.com/paritytech/substrate/discussions).
+If that doesn't work for you, we are working on an in-depth-guide for all major changes that took place and how you need to adapt your code for it. [You can find the upgrade guide under `docs/` in the repo](https://github.com/axiatech/substrate/blob/master/docs/Upgrading-2.0-to-3.0.md), if you have further questions or problem, please [feel free to ask in the github discussion board](https://github.com/axiatech/substrate/discussions).
 
 
 Runtime
@@ -106,7 +106,7 @@ API
 * Migrate assets pallet to new macros (#7984)
 * contracts: Make ChainExtension trait generic over the runtime (#8003)
 * Decouple the session validators from im-online (#7127)
-* Update parity-scale-codec to 2.0 (#7994)
+* Update axia-scale-codec to 2.0 (#7994)
 * Merkle Mountain Range pallet improvements (#7891)
 * Cleaner GRANDPA RPC API for proving finality (#7339)
 * Migrate frame-system to pallet attribute macro (#7898)
@@ -152,11 +152,11 @@ Runtime Migrations
 Patch release with backports to fix broken nightly builds.
 Namely contains backports of
 
-* [#7381: Make Substrate compile with latest nightly](https://github.com/paritytech/substrate/pull/7381)
-* [#7238: Fix compilation with environmental on latest nightly](https://github.com/paritytech/substrate/pull/7238)
-* [#7395: Make benchmarks compile with latest nightly](https://github.com/paritytech/substrate/pull/7395)
-* [#7838: Fix incorrect use of syn::exports](https://github.com/paritytech/substrate/pull/7838) (partially)
-* [#7854: Update to futures 0.3.9](https://github.com/paritytech/substrate/pull/7854)
+* [#7381: Make Substrate compile with latest nightly](https://github.com/axiatech/substrate/pull/7381)
+* [#7238: Fix compilation with environmental on latest nightly](https://github.com/axiatech/substrate/pull/7238)
+* [#7395: Make benchmarks compile with latest nightly](https://github.com/axiatech/substrate/pull/7395)
+* [#7838: Fix incorrect use of syn::exports](https://github.com/axiatech/substrate/pull/7838) (partially)
+* [#7854: Update to futures 0.3.9](https://github.com/axiatech/substrate/pull/7854)
 
 
 ## 2.0.0-rc6 -> 2.0.0 – two dot 😮
@@ -397,7 +397,7 @@ Client
 ## 2.0.0-alpha.7 -> 2.0.0-alpha.8
 
 **License Changed**
-From this release forward, the code is released under a new – more relaxed – license scheme: Client (`sc-*`) is released under "GPL 3.0 or newer with the Classpath Exception", while primitives, FRAME, the pallets, utils and test-utils are released under "Apache 2.0". More details in the [Relax licensing scheme PR](https://github.com/paritytech/substrate/pull/5947).
+From this release forward, the code is released under a new – more relaxed – license scheme: Client (`sc-*`) is released under "GPL 3.0 or newer with the Classpath Exception", while primitives, FRAME, the pallets, utils and test-utils are released under "Apache 2.0". More details in the [Relax licensing scheme PR](https://github.com/axiatech/substrate/pull/5947).
 
 Runtime
 -------

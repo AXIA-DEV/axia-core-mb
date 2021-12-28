@@ -28,14 +28,14 @@ Command:
 # Use the `--fast` flag to get the dependencies without needing to install the Substrate and Subkey binary
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 # Install only `subkey`, at a specific version of the subkey crate
-cargo install --force subkey --git https://github.com/paritytech/substrate --version <SET VERSION> --locked
+cargo install --force subkey --git https://github.com/axiatech/substrate --version <SET VERSION> --locked
 ```
 
 ### Run in a container
 
 ```bash
 # Use `--pull=always` with the `latest` tag, or specify a version in a tag
-docker run -it --pull=always docker.io/parity/subkey:latest <command to subkey>
+docker run -it --pull=always docker.io/axia/subkey:latest <command to subkey>
 ```
 
 ### Generate a random account
@@ -69,7 +69,7 @@ The output above also show the **public key** and the **Account ID**. Those are 
 
 The **SS58 address** (or **Public Address**) of a new account is a reprensentation of the public keys of an account for a given network (for instance Kusama or AXIA).
 
-You can read more about the SS58 format in the [substrate wiki](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)) and see the list of reserved prefixes in the [AXIA wiki](https://wiki.axia.network/docs/build-ss58-registry).
+You can read more about the SS58 format in the [substrate wiki](https://github.com/axiatech/substrate/wiki/External-Address-Format-(SS58)) and see the list of reserved prefixes in the [AXIA wiki](https://wiki.axia.network/docs/build-ss58-registry).
 
 For instance, considering the previous seed `0xa05c75731970cc7868a2fb7cb577353cd5b31f62dccced92c441acd8fee0c92d` the SS58 addresses are:
 
