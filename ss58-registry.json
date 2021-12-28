@@ -561,7 +561,7 @@
 		},
 		{
 			"prefix": 101,
-			"network": "origintrail-parachain",
+			"network": "origintrail-allychain",
 			"displayName": "OriginTrail Parachain",
 			"symbols": ["TRAC"],
 			"decimals": [18],

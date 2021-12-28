@@ -36,7 +36,7 @@ by picking the authority at index:
 The secondary slots supports either a `SecondaryPlain` or `SecondaryVRF`
 variant. Comparing with `SecondaryPlain` variant, the `SecondaryVRF` variant
 generates an additional VRF output. The output is not included in beacon
-randomness, but can be consumed by parachains.
+randomness, but can be consumed by allychains.
 
 The fork choice rule is weight-based, where weight equals the number of
 primary blocks in the chain. We will pick the heaviest chain (more primary

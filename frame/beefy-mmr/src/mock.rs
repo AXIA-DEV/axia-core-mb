@@ -143,7 +143,7 @@ impl pallet_beefy_mmr::Config for Test {
 
 pub struct DummyParaHeads;
 impl pallet_beefy_mmr::ParachainHeadsProvider for DummyParaHeads {
-	fn parachain_heads() -> Vec<(pallet_beefy_mmr::ParaId, pallet_beefy_mmr::ParaHead)> {
+	fn allychain_heads() -> Vec<(pallet_beefy_mmr::ParaId, pallet_beefy_mmr::ParaHead)> {
 		vec![(15, vec![1, 2, 3]), (5, vec![4, 5, 6])]
 	}
 }

@@ -1,6 +1,6 @@
 # Subkey
 
-Subkey is a commandline utility included with Substrate. It allows generating and restoring keys for Substrate based chains such as AXIA, Kusama and a growing number of parachains and Substrate based projects.
+Subkey is a commandline utility included with Substrate. It allows generating and restoring keys for Substrate based chains such as AXIA, Kusama and a growing number of allychains and Substrate based projects.
 
 `subkey` provides a few sub-commands to generate keys, check keys, sign messages, verify messages, etc...
 
