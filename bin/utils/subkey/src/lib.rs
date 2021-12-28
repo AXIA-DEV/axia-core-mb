@@ -25,7 +25,7 @@ use structopt::StructOpt;
 #[derive(Debug, StructOpt)]
 #[structopt(
 	name = "subkey",
-	author = "Parity Team <admin@parity.io>",
+	author = "Parity Team <admin@axiacoin.network>",
 	about = "Utility for generating and restoring with Substrate keys"
 )]
 pub enum Subkey {
